@@ -1,0 +1,9 @@
+<h1>Articles#index</h1>
+<% for article in @articles %>
+  <%= article.title %><br>
+  <%= article.body %><br>
+  <%= article.user.username %><br>
+  <%= article.likes %><br>
+  <%= article.created_at %><br><br>
+<% end %>
+<p>Find me in app/views/articles/index.html.erb</p>
