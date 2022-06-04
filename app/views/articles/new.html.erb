@@ -1,2 +1,8 @@
-<h1>Articles#new</h1>
-<p>Find me in app/views/articles/new.html.erb</p>
+<h1 class="title is-1">Create a new article</h1>
+<%= form_for @article, :url => {:action => "create"} do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br><br>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.submit "Create" %>
+<% end %>
