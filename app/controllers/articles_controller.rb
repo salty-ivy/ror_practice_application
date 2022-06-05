@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @article = Article.all
+    @articles = Article.all
   end
 
   def new
@@ -10,14 +10,17 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to @article
+      # render action: :index
+      redirect_to article_path(@article.id)
+      # redirect_to test_path
     else
-      render :show
+      puts "fail"
+      render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    # @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def update
@@ -26,12 +29,12 @@ class ArticlesController < ApplicationController
   def destroy
   end
 
+  def test
+    render :aman
+  end
+
   private
     def article_params
       params.require(:article).permit(:title, :body)
     end
-
-  def test
-    render action: :new
-  end
 end

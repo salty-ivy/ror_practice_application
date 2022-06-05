@@ -1,8 +1,7 @@
 <h1>Articles#index</h1>
-<% for each in @article %>
+<% @articles.each do |each| %>
   <%= each.title %><br>
   <%= each.body %><br>
-  <%= each.user.username %><br>
   <%= each.likes %><br>
   <%= each.created_at %><br><br>
 <% end %>
