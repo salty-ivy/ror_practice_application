@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_01_130010) do
-# Could not dump table "articles" because of following StandardError
-#   Unknown type 'belongs_to' for column 'user'
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_140011) do
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "likes", default: 0
+    t.integer "user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -28,10 +34,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_130010) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "confirm_password"
+    t.string "password_digest"
   end
 
   add_foreign_key "comments", "articles"
