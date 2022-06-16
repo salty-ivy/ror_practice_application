@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive:false}, format:{with:VALID_EMAIL_REGEX}
   validates :password_digest, presence: true
-  validates :confirm_password, :presence => true
-  validates :password_digest, confirmation: true
-  validates_length_of :password_digest, :in => 6..20, :on => :create
+  validates :password, :presence => true
+  # validates :password_digest, confirmation: true
+  validates_length_of :password, :in => 6..20, :on => :create
 end

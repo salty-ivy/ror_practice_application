@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :require_login
 
-  
+
   def index
     @articles = Article.all
   end
@@ -26,7 +26,24 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def update
+    @article = Article.find(params[:id])
+    if @article.user == current_user
+      if @article.update(article_params)
+        flash[:success] = "Article successfully updated"
+        redirect_to article_path(@article.id)
+      else
+        flash[:success] = "something went wrong please try again."
+        render :index
+      end
+    else
+      flash[:notice] = "you are not the owner of this article"
+      render :edit
+    end
   end
 
   def destroy
